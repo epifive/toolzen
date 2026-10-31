@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toolzen Documentation – Next.js All-in-One Online Tools</title>
+<style>
+  :root { --primary:#17785f; --ink:#18201d; --muted:#5d6863; --line:#dde3df; --paper:#f6f7f5; --surface:#fff; --marker:#f2c94c; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin:0; font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--paper); }
+  a { color:var(--primary); }
+  code, pre, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+  code { background:#e7efeb; padding:.1em .35em; border-radius:4px; }
+  pre { background:#13201b; color:#e4ede8; padding:16px; border-radius:10px; overflow-x:auto; line-height:1.5; }
+  pre code { background:none; padding:0; color:inherit; }
+  .layout { display:grid; grid-template-columns: 270px 1fr; min-height:100vh; }
+  nav.toc { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--surface); border-right:1px solid var(--line); padding:24px 18px; }
+  nav.toc .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; margin-bottom:6px; }
+  nav.toc .brand span.mark { width:30px; height:30px; border-radius:8px; background:var(--primary); position:relative; display:inline-block; }
+  nav.toc .brand span.mark::after { content:""; position:absolute; right:5px; top:5px; width:9px; height:9px; border-radius:2px; background:var(--marker); }
+  nav.toc .version { color:var(--muted); font-size:13px; margin:0 0 18px; }
+  nav.toc ol { list-style:none; margin:0; padding:0; }
+  nav.toc li a { display:block; padding:5px 10px; border-radius:6px; color:var(--ink); text-decoration:none; font-size:14px; }
+  nav.toc li a:hover { background:#e7efeb; }
+  nav.toc li.sub a { padding-left:24px; color:var(--muted); font-size:13px; }
+  main { padding:40px 56px 80px; max-width:980px; }
+  h1 { font-size:40px; line-height:1.15; margin:0 0 12px; letter-spacing:-.02em; }
+  h2 { font-size:28px; margin:56px 0 12px; padding-top:8px; border-top:1px solid var(--line); letter-spacing:-.01em; }
+  h3 { font-size:20px; margin:32px 0 8px; }
+  p, li { max-width:75ch; }
+  .lead { font-size:19px; color:var(--muted); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:18px 0; }
+  .note { border-left:4px solid var(--primary); background:#e7efeb; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  .warn { border-left:4px solid #c98a00; background:#fbf3dc; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  table { border-collapse:collapse; width:100%; margin:14px 0; background:var(--surface); font-size:15px; }
+  th, td { border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top; }
+  th { background:#eef3f0; }
+  ol.steps > li { margin-bottom:10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:12px; }
+  .grid .card { margin:0; }
+  .tag { display:inline-block; background:var(--marker); color:#3d2e00; font-size:12px; font-weight:700; padding:1px 7px; border-radius:5px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav.toc { position:static; height:auto; } main { padding:24px 20px 60px; } }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Contents">
+  <div class="brand"><span class="mark"></span>Toolzen</div>
+  <p class="version">Documentation · version 1.1.0</p>
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#package">Package contents</a></li>
+    <li><a href="#install">Installation</a></li>
+    <li class="sub"><a href="#install-cpanel">cPanel / shared hosting</a></li>
+    <li class="sub"><a href="#install-vps">VPS (PM2 + Nginx)</a></li>
+    <li class="sub"><a href="#install-docker">Docker</a></li>
+    <li class="sub"><a href="#install-vercel">Vercel</a></li>
+    <li class="sub"><a href="#install-local">Local computer</a></li>
+    <li class="sub"><a href="#installer">Web installer</a></li>
+    <li><a href="#admin">Admin panel</a></li>
+    <li class="sub"><a href="#admin-tools">Tools</a></li>
+    <li class="sub"><a href="#admin-plans">Plans &amp; limits</a></li>
+    <li class="sub"><a href="#admin-users">Users &amp; payments</a></li>
+    <li class="sub"><a href="#admin-pages">Pages &amp; messages</a></li>
+    <li class="sub"><a href="#admin-blog">Blog</a></li>
+    <li class="sub"><a href="#admin-languages">Languages &amp; translation</a></li>
+    <li class="sub"><a href="#admin-settings">Settings</a></li>
+    <li><a href="#payments">Payment gateways</a></li>
+    <li class="sub"><a href="#pay-stripe">Stripe</a></li>
+    <li class="sub"><a href="#pay-paypal">PayPal</a></li>
+    <li class="sub"><a href="#pay-razorpay">Razorpay</a></li>
+    <li class="sub"><a href="#pay-offline">Bank transfer</a></li>
+    <li><a href="#ads">Google AdSense</a></li>
+    <li><a href="#email">Email (SMTP)</a></li>
+    <li><a href="#seo">SEO</a></li>
+    <li><a href="#customize">Customisation</a></li>
+    <li><a href="#demo">Demo mode</a></li>
+    <li><a href="#update">Updating</a></li>
+    <li><a href="#env">Environment variables</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#credits">Credits</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+    <li><a href="#support">Support</a></li>
+  </ol>
+</nav>
+
+<main>
+<h1>Toolzen</h1>
+<p class="lead">All-in-one online tools website built with Next.js 16, React 19 and Tailwind CSS 4. Toolzen is free and open source under the MIT licence. This guide takes you from download to a live, earning website.</p>
+<div class="card">
+  <strong>Quick start:</strong> upload the <code>toolzen</code> folder, run <code>npm install</code> and <code>npm run build</code>, start the app, then open your domain in a browser. The web installer does the rest — no files to edit.
+</div>
+
+<h2 id="introduction">Introduction</h2>
+<p>Toolzen is a ready-to-run website with <strong>156 online tools</strong> for images, PDFs, text, developers, converters, SEO and everyday calculations. 144 tools run inside the visitor's browser, so files are never uploaded: your server stays fast and cheap, and visitors' files stay private. 12 website checkers (DNS, WHOIS, SSL, HTTP headers, redirects…) run on your server with built-in protection against abuse.</p>
+<p>The whole site can be translated into any language, including right-to-left languages such as Arabic and Urdu, and a built-in blog helps you bring in search traffic.</p>
+<p>You earn money in two ways: <strong>advertising</strong> (Google AdSense or any ad network) and <strong>paid plans</strong> that raise file-size limits, unlock Pro tools and remove ads. Payments are accepted through Stripe, PayPal, Razorpay or manual bank transfer.</p>
+
+<h2 id="features">Features</h2>
+<div class="grid">
+  <div class="card"><strong>156 tools</strong><br>Image compressor and converters, PDF merge/split/sign/organize, JSON/XML/YAML formatters, unit converters, finance and health calculators, QR codes and more.</div>
+  <div class="card"><strong>12 server SEO tools</strong><br>DNS, WHOIS, SSL, HTTP headers, redirects, website status, meta tags, page size, links, robots.txt, reverse DNS, my IP.</div>
+  <div class="card"><strong>Multi-language &amp; RTL</strong><br>Translate the interface, tools, categories and site texts in the admin panel. Language switcher, right-to-left layouts, JSON import/export.</div>
+  <div class="card"><strong>Blog</strong><br>Markdown posts with cover images, scheduling, view counts, related posts, article schema and sitemap entries.</div>
+  <div class="card"><strong>Drop-a-file finder</strong><br>Visitors drop any file on the home page and get the matching tools, with the file pre-loaded.</div>
+  <div class="card"><strong>Paid plans</strong><br>Unlimited plans with file-size limits, batch limits, Pro tools and ad-free browsing.</div>
+  <div class="card"><strong>4 payment methods</strong><br>Stripe subscriptions, PayPal, Razorpay (UPI) and bank transfer with manual approval.</div>
+  <div class="card"><strong>Ads ready</strong><br>Five ad slots, auto-ads script field, ads.txt editor. Hidden automatically for ad-free plans.</div>
+  <div class="card"><strong>SEO built in</strong><br>Per-tool titles and descriptions, FAQ and how-to schema, sitemap.xml, robots.txt, Open Graph.</div>
+  <div class="card"><strong>Admin panel</strong><br>Dashboard, tools on/off, Pro flags, users, plans, payments, content pages, messages, settings.</div>
+  <div class="card"><strong>Web installer</strong><br>MySQL/MariaDB or zero-setup SQLite. Database migrations run automatically on updates.</div>
+  <div class="card"><strong>Design</strong><br>Responsive, dark mode, your brand colour, logo and favicon. Accessible markup.</div>
+  <div class="card"><strong>Secure</strong><br>scrypt password hashing, HTTP-only sessions, CSRF-protected forms, rate limiting, input validation.</div>
+  <div class="card"><strong>Accounts</strong><br>Registration, login, password reset by email, profile and payment history.</div>
+  <div class="card"><strong>No external CDNs</strong><br>Fonts, scripts and the PDF engine are bundled with the app.</div>
+</div>
+
+<h2 id="requirements">Requirements</h2>
+<table>
+  <tr><th>Item</th><th>Requirement</th></tr>
+  <tr><td>Node.js</td><td>20.9 or newer (22 LTS recommended). Node.js <strong>22.13+</strong> is needed only for the SQLite database option.</td></tr>
+  <tr><td>Database</td><td>MySQL 5.7+ / MariaDB 10.3+ (recommended for production), <em>or</em> the built-in SQLite option (no database server needed).</td></tr>
+  <tr><td>Hosting</td><td>Any host that runs Node.js apps: a VPS, cPanel with “Setup Node.js App”, Plesk, Docker, Railway, Render, etc.</td></tr>
+  <tr><td>Memory</td><td>At least 1 GB RAM to build (<code>npm run build</code>). Running the site needs about 200–300 MB.</td></tr>
+  <tr><td>Writable folder</td><td>The <code>storage</code> folder must be writable (configuration, SQLite database and uploaded logos are stored there).</td></tr>
+</table>
+<div class="note">Static-only hosting (plain HTML hosting, GitHub Pages) cannot run Toolzen because the admin panel, accounts and payments need a Node.js server.</div>
+
+<h2 id="package">Package contents</h2>
+<p>The GitHub repository (<a href="https://github.com/epifive/toolzen">github.com/epifive/toolzen</a>) contains:</p>
+<pre><code>toolzen/
+├── documentation/          This guide
+├── marketing/final/        Screenshots
+└── app/                    The application source code
+    ├── src/                Next.js app (pages, admin, tools, server code)
+    ├── languages/          Arabic and Hindi translation packs (import in Admin → Languages)
+    ├── public/             Public static files
+    ├── storage/            Created data: config.json, SQLite DB, uploads
+    ├── server.js           Start file for cPanel / Passenger / PM2
+    ├── ecosystem.config.cjs  PM2 configuration
+    ├── Dockerfile, docker-compose.yml
+    ├── .env.example        Optional environment variables
+    └── package.json</code></pre>
+<div class="note">The installation steps below call the application folder <code>toolzen</code>. That is the <code>app</code> folder of the repository: copy or rename it to <code>toolzen</code>, or use <code>app</code> wherever the guide says <code>toolzen</code>.</div>
+
+<h2 id="install">Installation</h2>
+<p>Pick the guide that matches your hosting. Every method ends with the <a href="#installer">web installer</a>.</p>
+
+<h3 id="install-cpanel">cPanel / shared hosting (Setup Node.js App)</h3>
+<ol class="steps">
+  <li>In cPanel open <strong>MySQL® Databases</strong>. Create a database and a user, then add the user to the database with <em>All privileges</em>. Write down the database name, username and password.</li>
+  <li>Open <strong>File Manager</strong> and upload <code>toolzen.zip</code> (the <code>toolzen</code> folder from the package, zipped) to your home folder, e.g. <code>/home/youruser/toolzen</code>, and extract it. Do <em>not</em> put it inside <code>public_html</code>.</li>
+  <li>Open <strong>Setup Node.js App</strong> → <strong>Create Application</strong>:
+    <ul>
+      <li>Node.js version: the newest available (22.x recommended)</li>
+      <li>Application mode: <code>Production</code></li>
+      <li>Application root: <code>toolzen</code></li>
+      <li>Application URL: your domain or subdomain</li>
+      <li>Application startup file: <code>server.js</code></li>
+    </ul>
+    Click <strong>Create</strong>.</li>
+  <li>Click <strong>Run NPM Install</strong> and wait until it finishes.</li>
+  <li>Copy the command shown at the top of the page (it looks like <code>source /home/youruser/nodevenv/toolzen/22/bin/activate &amp;&amp; cd /home/youruser/toolzen</code>). Open <strong>Terminal</strong> in cPanel, paste it, then run:
+    <pre><code>npm run build</code></pre>
+    The build takes 1–4 minutes.</li>
+  <li>Back in Setup Node.js App, click <strong>Restart</strong>. Open your domain: you will see the installer.</li>
+</ol>
+<div class="warn">If the build stops with “JavaScript heap out of memory” your plan limits memory. Build on your own computer instead (<code>npm install &amp;&amp; npm run build</code>), then upload the whole folder <em>including</em> the <code>.next</code> folder, and only run “Run NPM Install” + “Restart” on the server.</div>
+
+<h3 id="install-vps">VPS (Ubuntu) with PM2 and Nginx</h3>
+<ol class="steps">
+  <li>Install Node.js 22 and PM2:
+<pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs nginx
+sudo npm install -g pm2</code></pre></li>
+  <li>Install MySQL (or use SQLite and skip this step):
+<pre><code>sudo apt install -y mysql-server
+sudo mysql -e "CREATE DATABASE toolzen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'toolzen'@'localhost' IDENTIFIED BY 'choose-a-strong-password';
+GRANT ALL PRIVILEGES ON toolzen.* TO 'toolzen'@'localhost'; FLUSH PRIVILEGES;"</code></pre></li>
+  <li>Upload the <code>toolzen</code> folder to <code>/var/www/toolzen</code>, then:
+<pre><code>cd /var/www/toolzen
+npm ci
+npm run build
+pm2 start ecosystem.config.cjs
+pm2 save &amp;&amp; pm2 startup</code></pre></li>
+  <li>Create <code>/etc/nginx/sites-available/toolzen</code>:
+<pre><code>server {
+    listen 80;
+    server_name tools.example.com;
+    client_max_body_size 10m;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}</code></pre>
+Enable it and add a free SSL certificate:
+<pre><code>sudo ln -s /etc/nginx/sites-available/toolzen /etc/nginx/sites-enabled/
+sudo nginx -t &amp;&amp; sudo systemctl reload nginx
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d tools.example.com</code></pre></li>
+  <li>Open <code>https://tools.example.com</code> to run the installer.</li>
+</ol>
+
+<h3 id="install-docker">Docker</h3>
+<p>The package includes a <code>Dockerfile</code> and a <code>docker-compose.yml</code> with MySQL:</p>
+<pre><code>cd toolzen
+docker compose up -d --build</code></pre>
+<p>Open <code>http://your-server:3000</code>. In the installer choose MySQL with host <code>db</code>, database <code>toolzen</code>, user <code>toolzen</code>, password <code>toolzen</code> (change these in <code>docker-compose.yml</code> first). The <code>storage</code> folder is kept in a Docker volume.</p>
+
+<h3 id="install-vercel">Vercel (with a cloud MySQL database)</h3>
+<p>Vercel has no permanent disk, so the web installer and SQLite can't be used there. Instead, Toolzen is configured with environment variables and a cloud MySQL-compatible database such as <strong>TiDB Cloud Serverless</strong> (free tier), Aiven or PlanetScale.</p>
+<ol class="steps">
+  <li>Create a database. In TiDB Cloud: create a <em>Serverless</em> cluster in the region closest to your visitors, open <strong>Connect</strong>, generate a password and note the host, port (4000), user and password. In the SQL editor run <code>CREATE DATABASE toolzen;</code></li>
+  <li>Push the <code>toolzen</code> folder to a GitHub repository (keep it private).</li>
+  <li>In Vercel click <strong>Add New → Project</strong>, import the repository and set <strong>Root Directory</strong> to the folder that contains <code>package.json</code>.</li>
+  <li>Add these <strong>Environment Variables</strong>:
+<pre><code>DB_DRIVER=mysql
+DB_HOST=your-cluster-host
+DB_PORT=4000
+DB_USER=xxxxxxxx.root
+DB_PASSWORD=your-password
+DB_NAME=toolzen
+DB_SSL=true
+APP_INSTALLED=true
+ADMIN_EMAIL=you@example.com
+ADMIN_PASSWORD=a-strong-password
+ADMIN_NAME=Your Name</code></pre></li>
+  <li>Click <strong>Deploy</strong>. Tables are created automatically on the first visit and the administrator account is created from <code>ADMIN_EMAIL</code> / <code>ADMIN_PASSWORD</code>.</li>
+  <li>In Vercel open <strong>Settings → Functions</strong> and choose the region closest to your database for the best speed.</li>
+</ol>
+<div class="warn">On Vercel, uploaded logos and favicons are not kept (no permanent disk). Paste an image URL instead, e.g. from your own CDN, in Settings → General, or host on a VPS/cPanel where uploads are stored in the <code>storage</code> folder.</div>
+
+<h3 id="install-local">Local computer (for testing or customising)</h3>
+<pre><code>cd toolzen
+npm install
+npm run dev</code></pre>
+<p>Open <code>http://localhost:3000</code> and choose <strong>SQLite</strong> in the installer.</p>
+
+<h3 id="installer">Web installer</h3>
+<ol class="steps">
+  <li><strong>Requirements</strong> – checks the Node.js version and that <code>storage</code> is writable.</li>
+  <li><strong>Database</strong> – choose MySQL/MariaDB (enter host, port, database, user and password) or SQLite. Click <em>Test connection</em>, then <em>Continue</em>.</li>
+  <li><strong>Site &amp; admin</strong> – enter your site name, the full site URL (e.g. <code>https://tools.example.com</code>) and the administrator account. Click <em>Install now</em>.</li>
+</ol>
+<p>The installer creates all tables, default plans and pages, writes <code>storage/config.json</code> and locks itself (<code>storage/installed.lock</code>). Sign in at <code>/login</code> and open the admin panel at <code>/admin</code>.</p>
+<div class="note">To run the installer again (e.g. to switch databases), delete <code>storage/installed.lock</code> and <code>storage/config.json</code> and restart the app. Existing data in the old database is not deleted.</div>
+
+<h2 id="admin">Admin panel</h2>
+<p>Open <code>/admin</code> while signed in as an administrator. The <strong>Dashboard</strong> shows users, active paid plans, this month's revenue, tool usage for the last 14 days, the most used tools, and a <em>Finish setting up</em> checklist.</p>
+
+<h3 id="admin-tools">Tools</h3>
+<ul>
+  <li><strong>Live</strong> – switch a tool off to hide it everywhere (menus, search, sitemap). Its URL returns 404.</li>
+  <li><strong>Pro only</strong> – only users whose plan includes “Pro tools” can use it; others see an upgrade prompt.</li>
+  <li><strong>Featured</strong> – shown in “Popular tools” on the home page.</li>
+  <li><strong>Edit</strong> – change the display name, meta description (for search results) and the order within its category.</li>
+</ul>
+
+<h3 id="admin-plans">Plans &amp; limits</h3>
+<p>One plan is marked as <strong>the free plan</strong>: its limits apply to visitors and free accounts. Paid plans can raise the <em>maximum file size</em> and <em>files at once</em>, unlock <em>Pro tools</em> and remove ads. Set a monthly price, a yearly price, or both (0 hides that billing period). Features (one per line) appear with a tick on the pricing page.</p>
+<div class="note">File limits are enforced in the visitor's browser, because files are never uploaded. They are a fair-use limit for your plans, not a security boundary.</div>
+
+<h3 id="admin-users">Users &amp; payments</h3>
+<ul>
+  <li><strong>Users</strong> – search, filter (paid, admins, banned), edit name/email/role, ban, reset passwords and give any user a paid plan until a date you choose.</li>
+  <li><strong>Payments</strong> – every payment from every gateway. Bank transfers wait here with the customer's reference: click <em>Approve</em> to activate the plan, or <em>Reject</em>.</li>
+</ul>
+
+<h3 id="admin-pages">Pages &amp; messages</h3>
+<p>Create content pages (About, Privacy policy, Terms…) in Markdown. They are published at <code>/p/your-slug</code> and can be linked in the footer. <code>{site_name}</code> and <code>{site_email}</code> are replaced automatically. <strong>Messages</strong> lists contact-form submissions; reply by email with one click.</p>
+
+<h3 id="admin-blog">Blog</h3>
+<p>Write articles in Markdown at <strong>Admin → Blog</strong>. Each post has a title, URL slug (<code>/blog/your-slug</code>), excerpt, cover image (upload or URL), meta description and status. Leave the publish date empty to publish now, or pick a future date (UTC) to schedule the post. Published posts appear at <code>/blog</code>, in the sitemap and, the latest three, on the home page. The Blog link appears in the header and footer once at least one post is published. Switch the whole blog off in Settings → General.</p>
+<div class="note">Tip: articles such as “How to compress a PDF for email” that link to your own tools are one of the most effective ways to get search traffic.</div>
+
+<h3 id="admin-languages">Languages &amp; translation</h3>
+<ol class="steps">
+  <li>Open <strong>Admin → Languages</strong> and add a language. Pick one from the list (the code, names and text direction are filled in) or enter your own, e.g. <code>pt-BR</code>.</li>
+  <li>Click <strong>Translate</strong>. Texts are grouped into <em>Interface</em> (menus, buttons, messages), <em>Site texts</em> (tagline, headline, footer, SEO texts), <em>Categories</em> and <em>Tools</em> (names, descriptions, steps and FAQs). Search, show untranslated texts only, and save page by page.</li>
+  <li>Switch the language to <strong>Active</strong>. When two or more languages are active, visitors get a language switcher in the header. Their choice is remembered in a cookie.</li>
+  <li>Choose the <strong>default language</strong> for visitors who haven't picked one.</li>
+</ol>
+<p>Anything you leave empty falls back to English, so you can translate step by step. To translate offline (or with a translation service), click <strong>Download template</strong>: you get a JSON file with every text. Translate the values, keep the keys, and upload the file with <strong>Import</strong>. <strong>Export</strong> downloads the translations you have so far, to back them up or copy them to another site.</p>
+<p><strong>Included language packs:</strong> the folder <code>toolzen/languages/</code> contains starter translations for <strong>Arabic</strong> (right to left) and <strong>Hindi</strong>: the whole interface, categories, and every tool's name and description. Add the language in Admin → Languages, then import <code>ar.json</code> or <code>hi.json</code>. They were prepared with translation software, so have a native speaker review them before you launch.</p>
+<p>Right-to-left languages (Arabic, Hebrew, Persian, Urdu) flip the whole public site automatically. The admin panel stays in English. You can also change the English wording itself: open English in Admin → Languages and enter your own text.</p>
+<div class="note">Some labels inside individual tools (option names, for example) stay in English. The tool name, description, how-to steps, FAQ, shared buttons, file drop areas and all site pages are translatable.</div>
+
+<h3 id="admin-settings">Settings</h3>
+<table>
+  <tr><th>Section</th><th>What you configure</th></tr>
+  <tr><td>General</td><td>Site name, tagline, site URL, contact email, logo (light and dark), favicon, footer text, blog on/off.</td></tr>
+  <tr><td>Appearance</td><td>Brand colour, default theme (light/dark/system), home page headline and introduction.</td></tr>
+  <tr><td>SEO</td><td>Home title and description, keywords, title separator, social image, Google/Bing verification, extra robots.txt rules.</td></tr>
+  <tr><td>Ads</td><td>Enable ads, network script, five ad slots, ads.txt.</td></tr>
+  <tr><td>Payments</td><td>Currency and the four gateways.</td></tr>
+  <tr><td>Email</td><td>SMTP server for password resets and contact notifications.</td></tr>
+  <tr><td>Users</td><td>Open/close registration, require sign-in to use tools, contact page, cookie notice.</td></tr>
+  <tr><td>Advanced</td><td>Maintenance mode, analytics code, additional code (chat widgets).</td></tr>
+</table>
+<p><strong>System</strong> shows the version, Node.js, database type and applied migrations, and lets you clear caches and send a test email.</p>
+
+<h2 id="payments">Payment gateways</h2>
+<p>Choose your <strong>currency</strong> in Settings → Payments first; it must be supported by every gateway you enable. Prices are entered per plan.</p>
+
+<h3 id="pay-stripe">Stripe (cards, Apple Pay, Google Pay – automatic renewal)</h3>
+<ol class="steps">
+  <li>In the Stripe Dashboard open <strong>Developers → API keys</strong> and copy the <em>Secret key</em> (<code>sk_live_…</code>, or <code>sk_test_…</code> for testing).</li>
+  <li>Open <strong>Developers → Webhooks → Add endpoint</strong>:
+    <ul>
+      <li>URL: <code>https://your-domain.com/api/payments/stripe/webhook</code></li>
+      <li>Events: <code>invoice.paid</code>, <code>checkout.session.completed</code>, <code>customer.subscription.deleted</code></li>
+    </ul>
+    Copy the <em>Signing secret</em> (<code>whsec_…</code>).</li>
+  <li>In Toolzen open Settings → Payments, switch on Stripe, paste both keys and save.</li>
+</ol>
+<p>Stripe products and prices are created automatically from your plans; you don't have to create them in Stripe. Customers can cancel automatic renewal from their account page and keep access until the end of the paid period.</p>
+
+<h3 id="pay-paypal">PayPal</h3>
+<ol class="steps">
+  <li>Go to <a href="https://developer.paypal.com/">developer.paypal.com</a> → <strong>Apps &amp; Credentials</strong>, create an app and copy the <em>Client ID</em> and <em>Secret</em> (Sandbox for testing, Live for real payments).</li>
+  <li>In Settings → Payments switch on PayPal, select the matching mode and paste both values.</li>
+</ol>
+<p>PayPal payments are one-off: a monthly or yearly purchase adds that period to the user's plan.</p>
+
+<h3 id="pay-razorpay">Razorpay (India: UPI, cards, netbanking)</h3>
+<ol class="steps">
+  <li>In the Razorpay Dashboard open <strong>Account &amp; Settings → API Keys</strong> and generate a key.</li>
+  <li>Paste the <em>Key ID</em> and <em>Key secret</em> in Settings → Payments and switch Razorpay on. Set the currency to INR.</li>
+</ol>
+<p>Customers pay on a Razorpay payment page; the signature of the return request is verified before the plan is activated.</p>
+
+<h3 id="pay-offline">Bank transfer</h3>
+<p>Switch on <em>Bank transfer</em> and write your bank details in <em>Payment instructions</em>. Customers submit their transaction reference; you approve it in Admin → Payments.</p>
+
+<h2 id="ads">Google AdSense</h2>
+<ol class="steps">
+  <li>Apply for AdSense with your domain. AdSense requires useful content pages — Toolzen already includes About, Privacy policy and Terms pages plus how-to text and FAQs on every tool.</li>
+  <li>Paste the AdSense code (<code>&lt;script async src="https://pagead2.googlesyndication.com/…"&gt;</code>) in Settings → Ads → <em>Ad network script</em>. This enables Auto ads.</li>
+  <li>Optionally create ad units in AdSense and paste their code into the slots: below the header, above/below each tool, tool sidebar and above the footer.</li>
+  <li>Paste the line AdSense gives you into <em>ads.txt</em> (served at <code>/ads.txt</code>).</li>
+  <li>Switch on <em>Show ads</em> and save.</li>
+</ol>
+<p>Ads are hidden for users whose plan is marked “No advertisements”.</p>
+
+<h2 id="email">Email (SMTP)</h2>
+<p>Email is used for password reset links and contact-form notifications. Enter your SMTP details in Settings → Email (any provider works: your hosting mailbox, Gmail with an app password, Brevo, Mailgun, Amazon SES…). Use port 587 with SSL off, or port 465 with SSL on. Send a test from Admin → System.</p>
+
+<h2 id="seo">SEO</h2>
+<ul>
+  <li>Every tool has its own page with a title, description, how-to steps and FAQ, plus structured data (WebApplication, FAQPage, BreadcrumbList).</li>
+  <li><code>/sitemap.xml</code> and <code>/robots.txt</code> are generated automatically. Submit the sitemap in Google Search Console.</li>
+  <li>Set the <strong>Site URL</strong> in Settings → General so canonical URLs and the sitemap use your domain.</li>
+  <li>Change any tool's title or description in Admin → Tools → Edit.</li>
+  <li>Blog posts get article structured data (BlogPosting), Open Graph tags and sitemap entries.</li>
+  <li>The server SEO tools (DNS, SSL, headers, meta tags…) give visitors reasons to come back. They are rate-limited to 30 checks per minute per visitor and can't be used to reach private networks.</li>
+</ul>
+
+<h2 id="customize">Customisation</h2>
+<h3>Branding without code</h3>
+<p>Logo, favicon, colours, texts, plans and pages are all editable in the admin panel.</p>
+<h3>Code structure</h3>
+<table>
+  <tr><th>Path</th><th>Contents</th></tr>
+  <tr><td><code>src/app/(site)</code></td><td>Public pages: home, tools, categories, blog, pricing, account, login.</td></tr>
+  <tr><td><code>src/app/admin</code></td><td>Admin panel pages and server actions.</td></tr>
+  <tr><td><code>src/tools/registry.ts</code>, <code>src/tools/defs/</code></td><td>Tool names, categories, descriptions, how-to steps and FAQ.</td></tr>
+  <tr><td><code>src/lib/i18n/messages.ts</code></td><td>Every interface text in English (the source for translations).</td></tr>
+  <tr><td><code>src/lib/server-tools</code></td><td>Server-side SEO tools and the network safety layer.</td></tr>
+  <tr><td><code>src/tools/components</code></td><td>One React component per tool.</td></tr>
+  <tr><td><code>src/components</code></td><td>Shared UI, site header/footer, tool building blocks.</td></tr>
+  <tr><td><code>src/lib</code></td><td>Database, settings, authentication, payments, email.</td></tr>
+  <tr><td><code>src/app/globals.css</code></td><td>Design tokens (colours, fonts).</td></tr>
+</table>
+<h3>Adding a tool</h3>
+<ol class="steps">
+  <li>Add an entry to <code>src/tools/registry.ts</code> or a file in <code>src/tools/defs/</code> (slug, name, category, icon, description, steps, FAQ). The icon is any <a href="https://lucide.dev/icons">Lucide icon</a> name, e.g. <code>"file-text"</code>.</li>
+  <li>Create <code>src/tools/components/your-slug.tsx</code> — a client component. Copy <code>word-counter.tsx</code> or <code>image-compressor.tsx</code> as a starting point.</li>
+  <li>Run <code>npm run tools:generate</code> (it registers the component and icon, and checks for mistakes), then <code>npm run build</code>.</li>
+</ol>
+<p>More details are in <code>src/tools/README.md</code>. After editing code always run <code>npm run build</code> and restart the app.</p>
+
+<h2 id="demo">Demo mode</h2>
+<p>Set the environment variable <code>DEMO_MODE=true</code> to make the admin panel read-only (everything can be viewed, nothing can be saved). Useful for a public demo. With <code>ADMIN_EMAIL</code> and <code>ADMIN_PASSWORD</code> set, the login page pre-fills that account for visitors, and its password and profile can't be changed. Add <code>DEMO_SEED=true</code> to fill the database with sample data.</p>
+
+<h2 id="update">Updating to a new version</h2>
+<ol class="steps">
+  <li>Back up the <code>storage</code> folder and your database.</li>
+  <li>Replace all files <em>except</em> <code>storage</code> with the new version.</li>
+  <li>Run <code>npm install</code> and <code>npm run build</code>, then restart the app.</li>
+</ol>
+<p>Database changes are applied automatically the first time the new version starts. Your settings, users and payments are kept.</p>
+
+<h2 id="env">Environment variables (optional)</h2>
+<p>Not needed for a normal installation. Use them for Docker or read-only hosting; see <code>.env.example</code>.</p>
+<table>
+  <tr><th>Variable</th><th>Purpose</th></tr>
+  <tr><td><code>PORT</code></td><td>Port to listen on (default 3000).</td></tr>
+  <tr><td><code>STORAGE_DIR</code></td><td>Folder for config, SQLite database and uploads.</td></tr>
+  <tr><td><code>DB_DRIVER</code>, <code>DB_HOST</code>, <code>DB_PORT</code>, <code>DB_NAME</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code>, <code>DB_FILE</code></td><td>Database connection (overrides <code>storage/config.json</code>).</td></tr>
+  <tr><td><code>DATABASE_URL</code></td><td>Alternative to the <code>DB_*</code> variables: <code>mysql://user:password@host:3306/toolzen?ssl=true</code>.</td></tr>
+  <tr><td><code>DB_SSL=true</code></td><td>Connect with TLS (required by most cloud databases).</td></tr>
+  <tr><td><code>APP_INSTALLED=true</code></td><td>Skip the installer when the database is configured with environment variables.</td></tr>
+  <tr><td><code>ADMIN_EMAIL</code>, <code>ADMIN_PASSWORD</code>, <code>ADMIN_NAME</code></td><td>Create or promote an administrator on start-up (no installer needed).</td></tr>
+  <tr><td><code>DEMO_SEED=true</code></td><td>Fill an empty database with sample users, payments and statistics, and install the Hindi and Arabic language packs.</td></tr>
+  <tr><td><code>SITE_URL</code></td><td>Fallback site URL.</td></tr>
+  <tr><td><code>DEMO_MODE=true</code></td><td>Read-only admin panel.</td></tr>
+  <tr><td><code>TRUSTED_PROXY_HOPS</code></td><td>Number of proxies in front of the app that add <code>X-Forwarded-For</code> (default 1). Use 2 for Cloudflare in front of Nginx, so rate limits see the real visitor IP.</td></tr>
+</table>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+<table>
+  <tr><th>Problem</th><th>Solution</th></tr>
+  <tr><td>Blank page or “502 Bad Gateway”</td><td>The app isn't running. Check that <code>npm run build</code> finished, then restart (cPanel: <em>Restart</em>; VPS: <code>pm2 restart toolzen</code>; logs: <code>pm2 logs toolzen</code>).</td></tr>
+  <tr><td>“storage folder is writable” fails</td><td>Give the app user write access: <code>chmod -R 775 storage</code> (and <code>chown</code> it to the user running Node.js).</td></tr>
+  <tr><td>Database connection fails</td><td>Check host (usually <code>localhost</code> or <code>127.0.0.1</code>), port 3306, and that the user has all privileges on the database. On cPanel the database and username include your account prefix, e.g. <code>myacc_toolzen</code>.</td></tr>
+  <tr><td>SQLite option fails</td><td>SQLite needs Node.js 22.13+. Choose a newer Node.js version in your hosting panel or use MySQL.</td></tr>
+  <tr><td>Can't sign in after installing on HTTPS behind a proxy</td><td>Make sure the proxy sends <code>X-Forwarded-Proto</code> and <code>Host</code> headers (see the Nginx example).</td></tr>
+  <tr><td>Server SEO tools say a site “could not be reached”</td><td>Your server needs outgoing internet access (ports 53, 80 and 443). Some shared hosts block outgoing connections; ask your host to allow them.</td></tr>
+  <tr><td>A translation doesn't show up</td><td>With several app processes, translations are cached for up to a minute. Check that the language is <em>Active</em> and that the visitor picked it (or that it is the default).</td></tr>
+  <tr><td>Logo changes don't appear</td><td>Hard-refresh the browser (Ctrl + F5). Uploaded files are served from <code>/uploads/…</code>.</td></tr>
+  <tr><td>Payments are not activated</td><td>For Stripe, check the webhook URL and signing secret, and look at the webhook delivery log in Stripe. Set the correct Site URL.</td></tr>
+  <tr><td>Password reset emails don't arrive</td><td>Configure SMTP and use Admin → System → Send test. Check the spam folder.</td></tr>
+  <tr><td>I forgot the admin password</td><td>Use “Forgot password” (needs SMTP). Otherwise ask another administrator to set a new password in Admin → Users, or delete <code>storage/installed.lock</code>, restart, and run the installer again with the same database and the same admin email: the installer sets the new password on the existing account and keeps all data.</td></tr>
+</table>
+
+<h2 id="credits">Credits</h2>
+<p>Toolzen uses these open-source projects. Their licences allow commercial use.</p>
+<table>
+  <tr><th>Project</th><th>Licence</th></tr>
+  <tr><td>Next.js, React</td><td>MIT</td></tr>
+  <tr><td>Tailwind CSS</td><td>MIT</td></tr>
+  <tr><td>Kysely, mysql2, zod, nodemailer, stripe-node</td><td>MIT / MIT-0</td></tr>
+  <tr><td>pdf-lib</td><td>MIT</td></tr>
+  <tr><td>PDF.js (pdfjs-dist)</td><td>Apache 2.0</td></tr>
+  <tr><td>JSZip</td><td>MIT (dual MIT/GPLv3)</td></tr>
+  <tr><td>qrcode, JsBarcode, marked, sql-formatter, js-md5, diff</td><td>MIT / BSD-3-Clause</td></tr>
+  <tr><td>undici, exifr, js-beautify, turndown, node-html-parser</td><td>MIT</td></tr>
+  <tr><td>yaml</td><td>ISC</td></tr>
+  <tr><td>Lucide icons</td><td>ISC</td></tr>
+  <tr><td>Bricolage Grotesque, Instrument Sans, JetBrains Mono fonts</td><td>SIL Open Font License 1.1 (licence files in <code>src/fonts</code>)</td></tr>
+</table>
+
+<h2 id="changelog">Changelog</h2>
+<div class="card"><strong>1.1.0</strong> – 15 October 2026
+<ul>
+  <li>90 new tools (156 in total), including a new Converters category: image format converters, meme generator, sign PDF, organize PDF, PDF to text, XML/YAML/HTML/CSS/JS formatters and converters, cron generator, 16 calculators (SIP, compound interest, CAGR, calories, due date, time zones…) and 12 unit converters.</li>
+  <li>12 server-side SEO tools: DNS, WHOIS, SSL, HTTP headers, redirects, website status, meta tags, page size, link extractor, robots.txt tester, reverse DNS and “What is my IP”.</li>
+  <li>Multi-language support with right-to-left layouts, a language switcher, an admin translation editor and JSON import/export.</li>
+  <li>Arabic and Hindi starter translation packs.</li>
+  <li>Blog with Markdown posts, cover images, scheduling, view counts and SEO markup.</li>
+  <li>Text files dropped on the home page now open in text tools too.</li>
+  <li>To update, replace the files as described in <a href="#update">Updating</a>; the database is upgraded automatically.</li>
+</ul></div>
+<div class="card"><strong>1.0.0</strong> – 15 October 2026 – Initial release.</div>
+
+<h2 id="support">Support</h2>
+<p>If something isn't working, please read <a href="#troubleshooting">Troubleshooting</a> first. For further help, open an issue on <a href="https://github.com/epifive/toolzen/issues">GitHub</a>. Please include your hosting type, Node.js version and any error message from the logs. Bug reports and pull requests are welcome.</p>
+<p>Need Toolzen hosted for you, installed on your own server, or customised? Contact <a href="https://www.epifive.com/services">EpiFive</a>.</p>
+<p>Toolzen is released under the <a href="https://github.com/epifive/toolzen/blob/main/LICENSE">MIT licence</a>.</p>
+</main>
+</div>
+</body>
+</html>

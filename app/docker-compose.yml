@@ -1,0 +1,28 @@
+# Toolzen with MySQL. Start with: docker compose up -d
+# Then open http://localhost:3000 and choose MySQL in the installer:
+#   host: db   port: 3306   database: toolzen   user: toolzen   password: toolzen
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - storage:/app/storage
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: toolzen
+      MYSQL_USER: toolzen
+      MYSQL_PASSWORD: toolzen
+      MYSQL_ROOT_PASSWORD: change-me
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  storage:
+  mysql:
