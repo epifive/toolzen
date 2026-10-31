@@ -44,8 +44,9 @@ More screenshots are in [`marketing/final/screenshots`](marketing/final/screensh
 ## Hosted version & paid installation
 
 Need Toolzen hosted for you, installed on your own server, or customised? Contact
-**[EpiFive](https://www.epifive.com/services)**.
-More open-source projects: https://www.epifive.com/open-source
+**[EpiFive](https://www.epifive.com/services#custom-app-development)**.
+- Step-by-step guide: [Toolzen on the EpiFive blog](https://www.epifive.com/blog/toolzen-open-source-online-tools-website-script)
+- More open-source projects: [epifive.com/open-source](https://www.epifive.com/open-source)
 
 ## Quick start
 
