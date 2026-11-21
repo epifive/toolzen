@@ -1,5 +1,14 @@
 # Toolzen
 
+<!-- epifive:header -->
+> Launch your own online tools website with 156 ready tools, user accounts, paid plans, ads, a blog and an admin panel.
+
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-0a7560?style=flat-square)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/epifive/toolzen?style=flat-square&label=release&color=4f5bd5)](https://github.com/epifive/toolzen/releases/latest)
+[![GitHub stars](https://img.shields.io/github/stars/epifive/toolzen?style=flat-square&color=b5791b)](https://github.com/epifive/toolzen/stargazers)
+
+**[Docs & guide on epifive.com](https://www.epifive.com/blog/toolzen-open-source-online-tools-website-script?utm_source=github&utm_medium=readme&utm_campaign=toolzen)** · **[Live demo](https://toolzen-sand.vercel.app)** · **[Download the latest release](https://github.com/epifive/toolzen/releases/latest)**
+
 **Open-source, all-in-one online tools website — 156 tools for images, PDFs, text, developers,
 converters, SEO and calculators, with accounts, paid plans, ads, a blog and an admin panel.**
 Built with Next.js 16, React 19 and Tailwind CSS 4. Runs on a VPS, Docker, cPanel (Node.js) or
@@ -85,3 +94,7 @@ described in [`app/src/tools/README.md`](app/src/tools/README.md). Run `npm run 
 ## License
 
 [MIT](LICENSE) © 2026 EpiFive
+
+---
+
+<p align="center">Made by <b>EpiFive</b> — <a href="https://www.epifive.com/?utm_source=github&utm_medium=readme&utm_campaign=toolzen">www.epifive.com</a> · <a href="https://www.epifive.com/open-source?utm_source=github&utm_medium=readme&utm_campaign=toolzen">more open-source projects</a></p>
